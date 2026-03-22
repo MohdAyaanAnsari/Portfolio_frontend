@@ -34,3 +34,8 @@ Clone the repository and install dependencies:
 git clone https://github.com/your-username/your-portfolio.git
 cd your-portfolio
 npm install
+npm run dev
+```
+App will run at:
+```bash
+http://localhost:5173
