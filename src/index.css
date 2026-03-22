@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+
+/* styles.css */
+
+@layer base {
+  /* 1. The Scrollbar Track (Background) */
+  ::-webkit-scrollbar {
+    width: 12px; /* Slightly wider to fit the grip pattern */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  /* 2. The Scrollbar Thumb (The Moving Part) */
+  ::-webkit-scrollbar-thumb {
+    background-color: #1a1a1a; /* Dark gray thumb */
+    border: 2px solid #000000; /* Creates padding around the thumb */
+    border-radius: 4px;
+    
+    /* 3. The "Triple Line" Grip Pattern */
+    /* Using a repeating linear gradient to create the 3 lines effect */
+    background-image: linear-gradient(
+      transparent 0%,
+      transparent 35%,
+      #333 35%,
+      #333 40%,
+      transparent 40%,
+      transparent 45%,
+      #333 45%,
+      #333 50%,
+      transparent 50%,
+      transparent 55%,
+      #333 55%,
+      #333 60%,
+      transparent 60%
+    );
+  }
+
+  /* 4. Hover State */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #222;
+    background-image: linear-gradient(
+      transparent 0%,
+      transparent 35%,
+      #4fd1c5 35%, /* Changes lines to your cyan/teal on hover */
+      #4fd1c5 40%,
+      transparent 40%,
+      transparent 45%,
+      #4fd1c5 45%,
+      #4fd1c5 50%,
+      transparent 50%,
+      transparent 55%,
+      #4fd1c5 55%,
+      #4fd1c5 60%,
+      transparent 60%
+    );
+  }
+
+  /* Firefox Support (Limited: Firefox doesn't support the grip pattern) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1a1a1a #000000;
+  }
+}
