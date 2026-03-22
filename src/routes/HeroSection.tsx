@@ -67,7 +67,7 @@ export default function HeroSection() {
         animate="show"
         className="w-full max-w-7xl rounded-3xl shadow-2xl px-8 py-5 md:py-10 lg:py-20 text-center relative overflow-hidden"
       >
-        <div className="absolute top-20 xl:right-120 lg:right-80 md:right-60 h-80 w-80 rounded-full bg-white/10 blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-20 xl:right-120 lg:right-80 md:right-55 h-80 w-80 rounded-full bg-white/10 blur-3xl pointer-events-none z-10" />
 
         <motion.p
           variants={item}
