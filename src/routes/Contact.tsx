@@ -19,7 +19,6 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      // Add 'as const' right here
       ease: [0.215, 0.61, 0.355, 1] as const
     }
   },
@@ -29,9 +28,13 @@ export default function ContactSection() {
   useLayoutEffect(() => {
     document.title = "Contact | Ayaan | Portfolio";
   }, []);
+
   return (
-    <section className="text-white flex flex-col justify-center items-start min-h-[60vh] py-10 px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+    /* Changed max-w-7xl to w-full to take full parent width */
+    <section className="max-w-7xl mx-auto text-white flex flex-col justify-center items-start min-h-[60vh] py-10 px-6 overflow-hidden">
+      
+      {/* grid-cols-1 is default (mobile), lg:grid-cols-2 for large screens */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full">
 
         {/* Left Side: Content & Socials */}
         <motion.div
@@ -39,7 +42,7 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-6"
+          className="space-y-6 w-full"
         >
           <h4 className="text-gray-400 font-medium uppercase tracking-widest text-sm">
             Contact me
@@ -58,9 +61,9 @@ export default function ContactSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-8 w-full"
         >
-          {/* Row 1 */}
+          {/* Row 1: grid-cols-1 for mobile, md:grid-cols-2 for tablet+ */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div variants={itemVariants} className="relative">
               <input
