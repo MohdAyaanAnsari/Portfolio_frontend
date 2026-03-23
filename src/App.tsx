@@ -10,7 +10,7 @@ import ResumePage from "./routes/Resume";
 
 function App() {
   return (
-    <div className="bg-black">
+    <div className="bg-black min-h-screen">
       <Header />
 
       <Routes>
