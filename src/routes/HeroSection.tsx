@@ -82,7 +82,7 @@ export default function HeroSection() {
         >
           I’m <span className="text-white">Ayaan</span>
           <br />
-          Web Developer
+          Software Developer
         </motion.h1>
 
         <motion.p
