@@ -30,7 +30,7 @@ export default function ContactSection() {
     document.title = "Contact | Ayaan | Portfolio";
   }, []);
   return (
-    <section className="text-white flex justify-center items-start min-h-[60vh] py-10 px-6 md:px-12 lg:px-24 overflow-hidden">
+    <section className="text-white flex justify-center items-start min-h-[60vh] py-10 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
 
         {/* Left Side: Content & Socials */}
