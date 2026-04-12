@@ -79,7 +79,7 @@ function MainContent() {
         <ResumeItem
           title="Software Developer"
           org="Zanthium Technosoft pvt ltd."
-          date="2025 — Present"
+          date="2025 — 2026"
           points={[
             "Built responsive React interfaces.",
             "Architecting scalable MERN stack applications.",
