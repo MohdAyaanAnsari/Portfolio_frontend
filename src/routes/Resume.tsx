@@ -230,8 +230,8 @@ function Tools() {
 function DownloadButton() {
   const handleDownload = () => {
     const link = document.createElement("a")
-    link.href = "/docs/resume.pdf"
-    link.download = "resume.pdf"
+    link.href = "/Resume_Ayaan.pdf"
+    link.download = "Resume_Ayaan.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
