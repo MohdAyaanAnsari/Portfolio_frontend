@@ -1,6 +1,6 @@
 # 🌐 Personal Portfolio
 
-A modern and responsive **developer portfolio website** built using **React, TypeScript, and Vite**. This project showcases my skills, projects, and experience as a frontend developer.
+A modern and responsive **Developer Portfolio Website** built using **React, TypeScript, and Vite**. This project showcases my skills, projects, and experience as a frontend developer.
 
 ---
 
