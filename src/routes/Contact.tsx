@@ -49,12 +49,10 @@ export default function ContactSection() {
       Validation Logic
   ========================= */
 
-  // Strict Email Regex
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  // Strict Phone Regex (Allows +, and 7-15 digits)
   const validatePhone = (phone: string) => {
     return /^\+?[0-9]{7,15}$/.test(phone.replace(/\s/g, ""));
   };
@@ -64,14 +62,12 @@ export default function ContactSection() {
     const value = formData[key as keyof typeof formData].trim();
 
     if (value === "") return "This field is required";
-
     if (key === "email" && !validateEmail(value)) return "Enter a valid email address";
     if (key === "phone" && !validatePhone(value)) return "Enter a valid phone number";
 
     return "";
   };
 
-  // The button only enables if everything is perfect
   const isFormValid =
     formData.name.trim() !== "" &&
     validateEmail(formData.email) &&
@@ -82,16 +78,8 @@ export default function ContactSection() {
   /* =========================
       Handlers
   ========================= */
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const placeholder = e.target.placeholder.toLowerCase();
-    let key = "message";
-
-    if (placeholder.includes("name")) key = "name";
-    else if (placeholder.includes("email")) key = "email";
-    else if (placeholder.includes("phone")) key = "phone";
-    else if (placeholder.includes("subject")) key = "subject";
-
-    setFormData({ ...formData, [key]: e.target.value });
+  const handleChange = (key: keyof typeof formData, value: string) => {
+    setFormData({ ...formData, [key]: value });
   };
 
   const handleBlur = (key: string) => {
@@ -99,32 +87,55 @@ export default function ContactSection() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (!isFormValid) return;
+    e.preventDefault();
+    if (!isFormValid || loading) return;
 
-  try {
-    setLoading(true);
-    await sendMessage(formData);
+    try {
+      setLoading(true);
+      await sendMessage(formData);
 
-    toast.success("Message sent successfully");
+      // CUSTOM THEMED TOAST - SUCCESS
+      toast.success("Message sent successfully", {
+        style: {
+          background: "#ffffff",
+          color: "#000000",
+          border: "none",
+          borderRadius: "999px",
+          fontSize: "12px",
+          fontWeight: "bold",
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+        },
+      });
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-    setTouched({});
-  } catch (error) {
-    console.error(error);
-
-    toast.error("Failed to send message. Please try again later.");
-  } finally {
-    setLoading(false);
-  }
-};
-    
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+      setTouched({});
+    } catch (error) {
+      console.error(error);
+      
+      // CUSTOM THEMED TOAST - ERROR
+      toast.error("Failed to send message", {
+        style: {
+          background: "#ef4444",
+          color: "#ffffff",
+          border: "none",
+          borderRadius: "999px",
+          fontSize: "12px",
+          fontWeight: "bold",
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+        },
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="max-w-7xl mx-auto text-white flex flex-col justify-center items-start min-h-[60vh] py-10 px-6 overflow-hidden">
@@ -153,102 +164,80 @@ export default function ContactSection() {
           className="space-y-8 w-full"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Full Name */}
             <motion.div variants={itemVariants} className="relative">
               <input
                 type="text"
                 placeholder="Full name"
                 value={formData.name}
-                onChange={handleChange}
+                onChange={(e) => handleChange("name", e.target.value)}
                 onBlur={() => handleBlur("name")}
-                className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${getFieldError("name") ? "border-red-500" : "border-gray-700 focus:border-white"
-                  }`}
+                className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${getFieldError("name") ? "border-red-500" : "border-gray-700 focus:border-white"}`}
               />
               {getFieldError("name") && <span className="text-red-500 text-[10px] uppercase tracking-wider absolute -bottom-5 left-0">{getFieldError("name")}</span>}
             </motion.div>
 
-            {/* Email - STRICT */}
             <motion.div variants={itemVariants} className="relative">
               <input
                 type="email"
                 placeholder="Email address"
                 value={formData.email}
-                onChange={handleChange}
+                onChange={(e) => handleChange("email", e.target.value)}
                 onBlur={() => handleBlur("email")}
-                className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${getFieldError("email") ? "border-red-500" : "border-gray-700 focus:border-white"
-                  }`}
+                className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${getFieldError("email") ? "border-red-500" : "border-gray-700 focus:border-white"}`}
               />
               {getFieldError("email") && <span className="text-red-500 text-[10px] uppercase tracking-wider absolute -bottom-5 left-0">{getFieldError("email")}</span>}
             </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Phone - STRICT */}
             <motion.div variants={itemVariants} className="relative">
-  <input
-    type="number"
-    placeholder="Phone Number"
-    onKeyDown={(e) => {
-      // Prevent arrow keys and scientific notation symbols
-      if (["ArrowUp", "ArrowDown", "e", "E", "+", "-"].includes(e.key)) {
-        e.preventDefault();
-      }
-    }}
-    value={formData.phone}
-    onChange={(e) => {
-      // Limit to 10 characters
-      if (e.target.value.length <= 10) {
-        handleChange(e);
-      }
-    }}
-    onBlur={() => handleBlur("phone")}
-    className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${
-      getFieldError("phone") ? "border-red-500" : "border-gray-700 focus:border-white"
-    }`}
-  />
-  {getFieldError("phone") && (
-    <span className="text-red-500 text-[10px] uppercase tracking-wider absolute -bottom-5 left-0">
-      {getFieldError("phone")}
-    </span>
-  )}
-</motion.div>
+              <input
+                type="text"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={(e) => {
+                  if (e.target.value.length <= 15) {
+                    handleChange("phone", e.target.value);
+                  }
+                }}
+                onBlur={() => handleBlur("phone")}
+                className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${getFieldError("phone") ? "border-red-500" : "border-gray-700 focus:border-white"}`}
+              />
+              {getFieldError("phone") && <span className="text-red-500 text-[10px] uppercase tracking-wider absolute -bottom-5 left-0">{getFieldError("phone")}</span>}
+            </motion.div>
 
-            {/* Subject */}
             <motion.div variants={itemVariants} className="relative">
               <input
                 type="text"
                 placeholder="Subject"
                 value={formData.subject}
-                onChange={handleChange}
+                onChange={(e) => handleChange("subject", e.target.value)}
                 onBlur={() => handleBlur("subject")}
-                className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${getFieldError("subject") ? "border-red-500" : "border-gray-700 focus:border-white"
-                  }`}
+                className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${getFieldError("subject") ? "border-red-500" : "border-gray-700 focus:border-white"}`}
               />
               {getFieldError("subject") && <span className="text-red-500 text-[10px] uppercase tracking-wider absolute -bottom-5 left-0">{getFieldError("subject")}</span>}
             </motion.div>
           </div>
 
-          {/* Message */}
           <motion.div variants={itemVariants} className="relative">
             <textarea
               placeholder="Write your message here"
               rows={1}
               value={formData.message}
-              onChange={handleChange}
+              onChange={(e) => handleChange("message", e.target.value)}
               onBlur={() => handleBlur("message")}
-              className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors resize-none ${getFieldError("message") ? "border-red-500" : "border-gray-700 focus:border-white"
-                }`}
+              className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors resize-none ${getFieldError("message") ? "border-red-500" : "border-gray-700 focus:border-white"}`}
             />
             {getFieldError("message") && <span className="text-red-500 text-[10px] uppercase tracking-wider absolute -bottom-2 left-0">{getFieldError("message")}</span>}
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <motion.button
-              whileHover={isFormValid ? { scale: 1.02 } : {}}
-              whileTap={isFormValid ? { scale: 0.98 } : {}}
+              whileHover={isFormValid && !loading ? { scale: 1.02 } : {}}
+              whileTap={isFormValid && !loading ? { scale: 0.98 } : {}}
               type="submit"
               disabled={loading || !isFormValid}
-              className={`px-8 py-4 font-bold rounded-full transition-all uppercase tracking-widest text-xs ${isFormValid
+              className={`px-8 py-4 font-bold rounded-full transition-all uppercase tracking-widest text-xs ${isFormValid && !loading
                   ? "bg-white text-black cursor-pointer hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                   : "bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50"
                 }`}
