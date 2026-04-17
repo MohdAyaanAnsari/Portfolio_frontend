@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useLayoutEffect, useState } from "react";
 import { sendMessage } from "../api/messages";
+import { toast } from "sonner";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -98,22 +99,32 @@ export default function ContactSection() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!isFormValid) return;
+  e.preventDefault();
+  if (!isFormValid) return;
 
-    try {
-      setLoading(true);
-      await sendMessage(formData);
-      alert("✅ Message sent successfully!");
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-      setTouched({});
-    } catch (error) {
-      console.error(error);
-      alert("❌ Failed to send message");
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    await sendMessage(formData);
+
+    toast.success("Message sent successfully");
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    });
+    setTouched({});
+  } catch (error) {
+    console.error(error);
+
+    toast.error("Failed to send message. Please try again later.");
+  } finally {
+    setLoading(false);
+  }
+};
+    
 
   return (
     <section className="max-w-7xl mx-auto text-white flex flex-col justify-center items-start min-h-[60vh] py-10 px-6 overflow-hidden">
