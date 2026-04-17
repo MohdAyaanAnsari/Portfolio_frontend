@@ -185,22 +185,33 @@ export default function ContactSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Phone - STRICT */}
             <motion.div variants={itemVariants} className="relative">
-              <input
-                type="number"
-                placeholder="Phone Number"
-                onKeyDown={(e) => {
-                  if (e.key === "ArrowUp" || e.key === "ArrowDown") {
-                    e.preventDefault();
-                  }
-                }}
-                value={formData.phone}
-                onChange={handleChange}
-                onBlur={() => handleBlur("phone")}
-                className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${getFieldError("phone") ? "border-red-500" : "border-gray-700 focus:border-white"
-                  }`}
-              />
-              {getFieldError("phone") && <span className="text-red-500 text-[10px] uppercase tracking-wider absolute -bottom-5 left-0">{getFieldError("phone")}</span>}
-            </motion.div>
+  <input
+    type="number"
+    placeholder="Phone Number"
+    onKeyDown={(e) => {
+      // Prevent arrow keys and scientific notation symbols
+      if (["ArrowUp", "ArrowDown", "e", "E", "+", "-"].includes(e.key)) {
+        e.preventDefault();
+      }
+    }}
+    value={formData.phone}
+    onChange={(e) => {
+      // Limit to 10 characters
+      if (e.target.value.length <= 10) {
+        handleChange(e);
+      }
+    }}
+    onBlur={() => handleBlur("phone")}
+    className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors ${
+      getFieldError("phone") ? "border-red-500" : "border-gray-700 focus:border-white"
+    }`}
+  />
+  {getFieldError("phone") && (
+    <span className="text-red-500 text-[10px] uppercase tracking-wider absolute -bottom-5 left-0">
+      {getFieldError("phone")}
+    </span>
+  )}
+</motion.div>
 
             {/* Subject */}
             <motion.div variants={itemVariants} className="relative">
