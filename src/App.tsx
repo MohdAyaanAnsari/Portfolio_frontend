@@ -7,12 +7,13 @@ import ProjectsPage from "./routes/Projects";
 import ServicesPage from "./routes/Services";
 import ContactPage from "./routes/Contact";
 import ResumePage from "./routes/Resume";
+import { Toaster } from 'sonner';
 
 function App() {
   return (
     <div className="bg-black min-h-screen">
       <Header />
-
+      <Toaster position="top-right" richColors />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
