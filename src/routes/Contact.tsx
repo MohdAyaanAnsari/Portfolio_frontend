@@ -196,7 +196,7 @@ export default function ContactSection() {
                 placeholder="Phone Number"
                 value={formData.phone}
                 onChange={(e) => {
-                  if (e.target.value.length <= 15) {
+                  if (e.target.value.length <= 10) {
                     handleChange("phone", e.target.value);
                   }
                 }}
