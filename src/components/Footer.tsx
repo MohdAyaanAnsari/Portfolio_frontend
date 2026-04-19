@@ -23,7 +23,7 @@ export default function Footer() {
               <SocialIcon link="https://x.com/_4y4n" icon={<SiX size={18} />} />
               <SocialIcon link="https://github.com/MohdAyaanAnsari" icon={<Github size={18} />} />
               <SocialIcon link="https://www.linkedin.com/in/mohdayaanansari" icon={<Linkedin size={18} />} />
-              <SocialIcon link="https://www.instagram.com/_4y4n" icon={<Instagram size={18} />} />
+              <SocialIcon link="https://www.instagram.com/_4y4nn" icon={<Instagram size={18} />} />
             </div>
           </div>
 
