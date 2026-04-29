@@ -182,7 +182,7 @@ function ResumeItem({
 
 function Skills() {
   const skills = [
-    "HTML5", "CSS3", "ReactJS", "TypeScript", "BootStrap", "Tailwind CSS", "Mongo DB", "MySQL",
+    "HTML5", "CSS3", "ReactJS", "TypeScript", "BootStrap", "Tailwind CSS", "Mongo DB", "MySQL", "Express", "Node"
   ];
 
   return (
