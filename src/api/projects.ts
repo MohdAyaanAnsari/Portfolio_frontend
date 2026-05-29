@@ -1,4 +1,5 @@
 import api from "./base";
+import projectsData from "../data/projects.json";
 
 export interface Project {
   _id: string;
@@ -13,11 +14,11 @@ export interface Project {
 export const getProjects = async (): Promise<Project[]> => {
   try {
     const response = await api.get("/projects");
-    // console.log(response.data);
-    
+
     return response.data;
   } catch (error) {
-    console.error("Error fetching projects:", error);
-    throw error;
+    console.error("API failed, loading local JSON data:", error);
+
+    return projectsData as Project[];
   }
 };
