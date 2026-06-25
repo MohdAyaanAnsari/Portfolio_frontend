@@ -36,7 +36,7 @@ export default function Footer() {
             <div className="space-y-4 text-sm">
               <div>
                 <p className="text-gray-400">Email</p>
-                <p className="font-medium">4y4n4ns4ri@gmail.com</p>
+                <p className="font-medium">ayaan.devmail@gmail.com</p>
               </div>
 
               <div>

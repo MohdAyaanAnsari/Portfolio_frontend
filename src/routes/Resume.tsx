@@ -60,7 +60,7 @@ function Header() {
 
         <div className="flex flex-col gap-3 text-zinc-500 text-xs font-mono ">
           <span className="flex items-center gap-2">
-            <Mail size={14} /> 4y4n4ns4ri@gmail.com
+            <Mail size={14} /> ayaan.devmail@gmail.com
           </span>
 
           <span className="flex items-center gap-2">
