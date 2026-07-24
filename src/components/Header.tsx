@@ -79,7 +79,7 @@ export default function Header() {
           
           <div className="flex justify-between items-center">
             <span className="text-white flex gap-1 font-bold text-2xl">
-              <img src="/logo.png" alt="" width="30" />Ayaan
+              Ayaan
             </span>
             <button onClick={toggleSidebar} className="text-gray-400 hover:text-white">
               <X size={20} />
