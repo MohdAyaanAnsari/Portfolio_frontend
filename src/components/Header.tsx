@@ -21,7 +21,7 @@ export default function Header() {
 
           {/* Logo */}
           <Link to="/" className="flex gap-1 text-white font-semibold text-lg tracking-wide">
-            <img src="/logo.png" alt="" width="30" />Ayaan
+           Ayaan
           </Link>
 
           {/* Desktop Menu */}
