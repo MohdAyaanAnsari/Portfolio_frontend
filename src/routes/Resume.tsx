@@ -172,7 +172,7 @@ function ResumeItem({
 
 function Skills() {
   const skills = [
-    "HTML5", "CSS3", "React.js", "TypeScript", "BootStrap", "Tailwind CSS", "Mongo DB", "MySQL", "PostgreSQL" "Express.js", "Node.js", "Authentication", "JWT", "Rest API's",
+    "HTML5", "CSS3", "React.js", "TypeScript", "BootStrap", "Tailwind CSS", "Mongo DB", "MySQL", "PostgreSQL", "Express.js", "Node.js", "Authentication", "JWT", "Rest API's",
   ];
 
   return (
