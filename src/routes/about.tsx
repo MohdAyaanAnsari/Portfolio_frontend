@@ -107,17 +107,39 @@ export default function AboutSection() {
           </motion.div>
 
           {/* Project Box - Accent Color */}
-          <motion.div variants={itemVariants} className="bg-linear-to-br from-gray-200 to-gray-400 rounded-4xl p-8 flex flex-col justify-between group cursor-pointer hover:shadow-[0_20px_60px_rgba(161,161,170,0.1)] transition-all">
-            <div className="flex justify-between items-start">
-              <Zap size={32} className="text-black fill-black" />
-              <ArrowUpRight size={24} className="text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+          <motion.div
+            variants={itemVariants}
+            className="relative aspect-square overflow-hidden rounded-4xl group cursor-pointer hover:shadow-[0_20px_60px_rgba(161,161,170,0.1)] transition-all"
+            onClick={() => navigate("/Projects")}
+          >
+            {/* Image */}
+            <img
+              src="/Ayaan.png" // Replace with your image
+              alt="Portfolio Preview"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+
+            {/* Dark Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+            {/* Top Right Icon */}
+            <div className="absolute top-6 right-6">
+              <ArrowUpRight
+                size={24}
+                className="text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
+              />
             </div>
-            <div>
-              <h3 className="text-2xl font-bold text-black mb-2">Engineered Impact</h3>
-              <p className="text-gray-800/80 text-sm mb-6">Explore a curated selection of full-stack deployments and UI experiments.</p>
-              <div onClick={() => navigate("/Projects")} className="inline-block px-4 py-2 bg-black backdrop-blur-md rounded-lg text-xs font-bold text-white tracking-widest uppercase">
-                Browse Portfolio
-              </div>
+
+            {/* Bottom Content */}
+            <div
+              className="absolute bottom-0 left-0 right-0 p-6">
+              <h3 className="text-lg font-bold text-white">
+                Engineered Impact
+              </h3>
+
+              <p className="text-gray-200 text-[10px] mb-1">
+                Explore a curated selection of full-stack deployments and UI experiments.
+              </p>
             </div>
           </motion.div>
 
