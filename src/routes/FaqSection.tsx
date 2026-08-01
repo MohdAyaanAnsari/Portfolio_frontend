@@ -5,27 +5,27 @@ import { Plus } from 'lucide-react';
 const faqData = [
   {
     question: "Who are you, and what do you do?",
-    answer: "I am a full-stack developer and designer focused on creating high-performance web applications and intuitive user experiences."
+    answer: "I'm a Software developer and designer who builds high-performance web applications and interfaces that people actually enjoy using. I own the process end-to-end, from architecture to pixel-perfect execution."
   },
   {
     question: "What services do you provide?",
-    answer: "I offer custom web development, UI/UX design, performance optimization, and API integrations."
+    answer: "I deliver custom web development, UI/UX design, performance optimization, and API integrations."
   },
   {
     question: "What technologies do you work with?",
-    answer: "I specialize in React, TypeScript, Tailwind CSS, and various backend technologies like Node.js, Mongo DB and MySQL."
+    answer: "My core stack is React, TypeScript, and Tailwind CSS on the frontend, backed by Node.js, MongoDB, and MySQL. I choose the right tool for the job, not just the familiar one."
   },
   {
     question: "How do you approach a new project?",
-    answer: "My process starts with discovery and strategy, followed by wireframing, design, development, and iterative testing."
+    answer: "Every project follows a disciplined process: discovery and strategy, wireframing, design, development, and rigorous testing. Nothing ships until it meets my standard, not just yours."
   },
   {
     question: "Can you redesign an existing website?",
-    answer: "Yes, I can perform a full audit of your current site and rebuild it with modern tech and improved user flows."
+    answer: "Absolutely. I run a full audit of your current site, identify what's holding it back, and rebuild it with modern architecture and user flows that convert."
   },
   {
     question: "How can I collaborate with you on a project?",
-    answer: "You can reach out via the contact form below or email me directly to schedule a discovery call."
+    answer: "Reach out through the contact form below or email me directly to schedule a discovery call. I take on select projects, so let's talk about whether it's the right fit."
   }
 ];
 

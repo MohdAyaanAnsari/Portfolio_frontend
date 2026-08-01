@@ -29,7 +29,7 @@ export default function AboutSection() {
 
 
   const navigate = useNavigate();
-  const skills = ["HTML5", "CSS3", "ReactJS", "TypeScript", "BootStrap", "Tailwind CSS", "Mongo DB", "MySQL", "Git", "GitHub", "Canva", "VS Code", "Xampp"];
+  const skills = ["HTML5", "CSS3", "React.js", "Javascript", "TypeScript", "BootStrap", "Tailwind CSS", "Mongo DB", "Express.js", "Node.js", "MySQL", "Git", "GitHub", "Canva", "VS Code", "Xampp"];
 
   return (
     <section className="w-full bg-[#050505] text-white py-10 px-6">
@@ -42,11 +42,11 @@ export default function AboutSection() {
       >
         {/* --- SECTION 1: HERO BIOGRAPHY --- */}
         <div className="border-b border-zinc-800/50 pb-16 mb-16">
-          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
+          {/* <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
             <h4 className="text-gray-500 font-mono text-xs uppercase tracking-[0.4em]">
               Defining the Digital Frontier
             </h4>
-          </motion.div>
+          </motion.div> */}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <motion.h2 variants={itemVariants} className="lg:col-span-8 text-7xl md:text-8xl font-bold tracking-tighter leading-[0.85]">

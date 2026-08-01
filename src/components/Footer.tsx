@@ -20,10 +20,10 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-4 pt-2">
-              <SocialIcon link="https://x.com/_4y4n" icon={<SiX size={18} />} />
+              <SocialIcon link="https://x.com/ayaandotcom" icon={<SiX size={18} />} />
               <SocialIcon link="https://github.com/MohdAyaanAnsari" icon={<Github size={18} />} />
               <SocialIcon link="https://www.linkedin.com/in/mohdayaanansari" icon={<Linkedin size={18} />} />
-              <SocialIcon link="https://www.instagram.com/_4y4nn" icon={<Instagram size={18} />} />
+              <SocialIcon link="https://www.instagram.com/ayaanbitstream" icon={<Instagram size={18} />} />
             </div>
           </div>
 
@@ -41,7 +41,7 @@ export default function Footer() {
 
               <div>
                 <p className="text-gray-400">Location</p>
-                <p className="font-medium">Kashipur, Uttarakhand, India</p>
+                <p className="font-medium">Uttarakhand, India</p>
               </div>
 
               {/* React Router Navigation */}

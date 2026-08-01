@@ -54,7 +54,7 @@ function Header() {
           </h1>
 
           <p className="mt-3 text-zinc-400 text-sm uppercase tracking-[0.25em] font-mono">
-            Full Stack Developer & UI Engineer
+            Software Developer & UI Engineer
           </p>
         </div>
 
@@ -64,7 +64,7 @@ function Header() {
           </span>
 
           <span className="flex items-center gap-2">
-            <MapPin size={14} /> Kashipur, India
+            <MapPin size={14} /> India
           </span>
         </div>
       </div>
@@ -81,22 +81,12 @@ function MainContent() {
           org="Zanthium Technosoft pvt ltd."
           date="2025 — 2026"
           points={[
-            "Built responsive React interfaces.",
-            "Architecting scalable MERN stack applications.",
-            "Building animated UI using Framer Motion and Tailwind.",
+            "• Built and shipped 30+ full-stack features using React, TypeScript, Tailwind CSS, and Node.js, collaborating with a 2-3 person production team to deliver live application updates.",
+            "• Planned and implemented REST APIs and Socket.IO real-time features, enabling instant updates across the live application without page reloads.",
+            "• Managed and queried the data layer across 6-15 tables/collections spanning MySQL, PostgreSQL, and MongoDB, ensuring data consistency across relational and NoSQL systems.",
+            "• Integrated 2-3 third-party APIs via Axios and implemented client-side routing with TanStack Router, streamlining data flow between frontend and external services.",
           ]}
           />
-
-        {/* <ResumeItem
-          title="Frontend Intern"
-          org="Web Solutions Agency"
-          date="2023 — 2024"
-          points={[
-            "Optimizing MongoDB queries improving performance by 40%.",
-            "Converted Figma UI into production code.",
-            "Maintained CI/CD pipelines.",
-          ]}
-        /> */}
       </Section>
 
       <Section title="Education">
@@ -182,7 +172,7 @@ function ResumeItem({
 
 function Skills() {
   const skills = [
-    "HTML5", "CSS3", "ReactJS", "TypeScript", "BootStrap", "Tailwind CSS", "Mongo DB", "MySQL", "Express", "Node"
+    "HTML5", "CSS3", "React.js", "TypeScript", "BootStrap", "Tailwind CSS", "Mongo DB", "MySQL", "PostgreSQL" "Express.js", "Node.js", "Authentication", "JWT", "Rest API's",
   ];
 
   return (
