@@ -71,10 +71,9 @@ export default function HeroSection() {
 
         <motion.p
           variants={item}
-          className="flex justify-center items-center gap-2 text-sm text-gray-400 mb-3"
+          className="bg-red-500 flex justify-center items-center gap-2 text-sm text-gray-400 mb-3"
         >
-          {/* <MapPin size={20} /> India */}
-          <MapPin size={20} /> Kashipur
+          <MapPin size={20} /> Kashipur, Uttarakhand
         </motion.p>
 
         <motion.h1
