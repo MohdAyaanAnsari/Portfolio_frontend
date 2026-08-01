@@ -1,6 +1,6 @@
 import type { Variants } from "framer-motion";
 import { motion } from "framer-motion";
-import { GraduationCap, Code2, Briefcase, Zap, ArrowUpRight } from "lucide-react";
+import { GraduationCap, Code2, Briefcase, ArrowUpRight } from "lucide-react";
 import { useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom"; // ✅ changed
 
