@@ -137,6 +137,6 @@ This project is licensed under the MIT License.
 
 **Your Name**
 
-- Portfolio: https://your-portfolio.com
-- GitHub: https://github.com/your-username
-- LinkedIn: https://linkedin.com/in/your-profile
+- Portfolio: https:ayaan.appwrite.network
+- GitHub: https://github.com/MohdAyaanAnsari
+- LinkedIn: https://linkedin.com/in/MohdAyaanAnsari
