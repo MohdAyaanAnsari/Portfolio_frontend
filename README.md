@@ -6,7 +6,8 @@ A modern, responsive, and high-performance portfolio website built with **React*
 
 ## Preview
 
-<img width="2560" height="1600" alt="(Nest Hub Max)" src="https://github.com/user-attachments/assets/59b514cd-c649-4d29-affd-7cdd2a303555" />
+<img width="1366" height="678" alt="image" src="https://github.com/user-attachments/assets/14ada71a-58a0-4e23-b8ac-138703ecac83" />
+
 
 ---
 
