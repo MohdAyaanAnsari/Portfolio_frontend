@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Github, Linkedin, ArrowRight, Instagram, Command } from "lucide-react";
+import { Github, Linkedin, ArrowRight, Instagram } from "lucide-react";
 import { SiX } from "react-icons/si";
 
 export default function Footer() {

@@ -1,4 +1,4 @@
-import { Monitor, Database, Brush, ChevronRight, Sparkles } from "lucide-react"
+import { Monitor, Database, Brush, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
 import type { Variants } from "framer-motion"
 import { useNavigate } from "react-router-dom"

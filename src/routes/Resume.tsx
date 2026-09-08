@@ -1,14 +1,11 @@
 import type { Variants } from "framer-motion";
 import { motion } from "framer-motion";
 import {
-  FileText,
   Download,
   FolderGit2,
   Mail,
   MapPin,
-  GraduationCap,
   Terminal,
-  Sparkles,
   Globe,
   Lock,
   Key,

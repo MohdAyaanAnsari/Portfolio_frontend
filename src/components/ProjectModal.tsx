@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, Github, X } from "lucide-react"
+import { ExternalLink, Github } from "lucide-react"
 import type { Project } from "../api/projects"
 
 interface ProjectModalProps {
