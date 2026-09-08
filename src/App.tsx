@@ -11,7 +11,7 @@ import { Toaster } from 'sonner';
 
 function App() {
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-[#1e1e1e] min-h-screen">
       <Header />
       <Toaster position="top-right" richColors />
       <Routes>
