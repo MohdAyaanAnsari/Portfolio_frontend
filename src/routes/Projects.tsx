@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import { useLayoutEffect, useEffect, useState } from "react"
-import { getProjects, type Project} from "../api/projects"
+import { getProjects, type Project } from "../api/projects"
+import ProjectModal from "../components/ProjectModal"
 
 const container = {
   hidden: { opacity: 0 },
@@ -23,6 +24,7 @@ const item = {
 export default function AllProjectsPage() {
   const navigate = useNavigate()
   const [projects, setProjects] = useState<Project[]>([])
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   useLayoutEffect(() => {
     document.title = "Projects | Ayaan | Portfolio"
@@ -42,7 +44,9 @@ export default function AllProjectsPage() {
   }, [])
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-10 min-h-screen">
+    <section className="w-full max-w-7xl mx-auto px-6 py-5 sm:py-10 relative overflow-hidden min-h-screen">
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-white/5 rounded-full blur-[150px] pointer-events-none" />
 
       {/* Heading */}
       <motion.div
@@ -51,11 +55,11 @@ export default function AllProjectsPage() {
         transition={{ duration: 0.5 }}
         className="mb-16"
       >
-        <h2 className="text-5xl font-bold text-white">
-          Full Portfolio
+        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Full <span className="bg-gradient-to-b from-white via-white to-gray-300 bg-clip-text text-transparent">Portfolio</span>
         </h2>
 
-        <p className="text-gray-400 mt-4 max-w-xl">
+        <p className="text-gray-300 mt-4 max-w-xl text-xs sm:text-base font-light">
           An extended look at my work, experiments, and professional projects.
         </p>
       </motion.div>
@@ -65,68 +69,70 @@ export default function AllProjectsPage() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {projects.map((project) => (
           <motion.div
             key={project._id}
             variants={item}
             whileHover={{ y: -8 }}
-            className="group overflow-hidden backdrop-blur-lg hover:border-white/20 transition"
+            onClick={() => setSelectedProject(project)}
+            className="group relative cursor-pointer rounded-3xl bg-white/[0.03] border border-white/20 backdrop-blur-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_0_0_rgba(255,255,255,0.2)] overflow-hidden transition-all duration-300 flex flex-col justify-between"
           >
-            <div className="overflow-hidden rounded-xl">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-64 object-cover group-hover:scale-105 transition duration-500"
-              />
+            {/* Liquid Edge Gloss Highlight */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none z-20" />
+
+            {/* Image Box */}
+            <div className="relative p-3 pb-0">
+              <div className="relative overflow-hidden rounded-2xl border border-white/10">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+                />
+              </div>
             </div>
 
-            <div className="py-6 flex flex-col gap-4">
-              <h3 className="text-2xl font-semibold text-white">
-                {project.title}
-              </h3>
+            {/* Card Content */}
+            <div className="p-6 pt-4 flex flex-col justify-between flex-1 gap-4 relative z-10">
+              <div>
+                <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+                  {project.title}
+                </h3>
 
-              <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
-                {project.description}
-              </p>
-
-              <div className="flex gap-3">
-                <button
-                  onClick={() => window.open(project.live, "_blank")}
-                  className="px-5 py-2 text-sm rounded-lg border border-white/20 text-white hover:bg-white hover:text-black cursor-pointer transition font-medium"
-                >
-                  View Demo
-                </button>
-
-                <button
-                  onClick={() => window.open(project.github, "_blank")}
-                  className="px-5 py-2 text-sm rounded-lg bg-white text-black hover:bg-black hover:text-white cursor-pointer border border-white/20 transition"
-                >
-                  Repo
-                </button>
+                <p className="text-gray-300 text-sm leading-relaxed font-light line-clamp-2">
+                  {project.description}
+                </p>
               </div>
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Bottom Navigation */}
+      {/* Bottom Navigation Callout */}
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        className="mt-2 pt-12 border-t border-white/10 text-center"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="mt-20 pt-12 border-t border-white/10 text-center"
       >
-        <p className="text-gray-500 mb-6">Interested in working together?</p>
+        <p className="text-gray-400 mb-6 font-light">Interested in working together?</p>
 
         <button
           onClick={() => navigate("/")}
-          className="px-8 py-3 rounded-full bg-white text-black font-bold hover:scale-105 transition-transform"
+          className="group relative cursor-pointer inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-white/90 hover:bg-white text-black font-semibold text-sm transition-all duration-300 active:scale-95 shadow-[0_4px_20px_rgba(255,255,255,0.25)] border border-white/50 overflow-hidden"
         >
-          Get In Touch
+          <span className="relative z-10">Get In Touch</span>
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         </button>
       </motion.div>
 
+      {/* Pop-up Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   )
 }
