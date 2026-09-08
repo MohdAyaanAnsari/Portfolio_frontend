@@ -179,19 +179,19 @@ export default function AboutSection() {
             </div>
 
             {/* Inner Skill Tiles - Increased Padding, Font Size, & Icon Size */}
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill) => (
-                <div
-                  key={skill}
-                  className="flex items-center gap-2.5 px-5 py-3 bg-transparent border border-white/20 hover:border-white/40 backdrop-blur-xl rounded-2xl transition-all duration-300 group cursor-default shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] hover:scale-105"
-                >
-                  {techIcons[skill] || null}
-                  <span className="text-gray-200 group-hover:text-white transition-colors text-sm font-semibold tracking-wide">
-                    {skill}
-                  </span>
-                </div>
-              ))}
-            </div>
+           <div className="flex flex-wrap gap-2.5 sm:gap-3">
+  {skills.map((skill) => (
+    <div
+      key={skill}
+      className="flex items-center justify-center p-3 sm:px-5 sm:py-3 bg-transparent border border-white/20 hover:border-white/40 backdrop-blur-xl rounded-2xl transition-all duration-300 group cursor-default shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] hover:scale-105"
+    >
+      {techIcons[skill] || null}
+      <span className="hidden sm:inline text-gray-200 group-hover:text-white transition-colors text-sm font-semibold tracking-wide ml-2.5">
+        {skill}
+      </span>
+    </div>
+  ))}
+</div>
           </motion.div>
 
           {/* Interactive Project Glass Box */}
