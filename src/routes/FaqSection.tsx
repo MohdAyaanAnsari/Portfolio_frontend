@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Plus } from 'lucide-react';
+import { useState } from 'react'
+import { motion, type Variants } from 'framer-motion'
+import { Plus } from 'lucide-react'
 
 const faqData = [
   {
@@ -27,93 +27,101 @@ const faqData = [
     question: "How can I collaborate with you on a project?",
     answer: "Reach out through the contact form below or email me directly to schedule a discovery call. I take on select projects, so let's talk about whether it's the right fit."
   }
-];
+]
 
-// Animation Variants
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: { staggerChildren: 0.1 },
   },
-};
+}
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 25 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+}
 
-const FaqSection = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export default function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="bg-[#0f0f0f] text-white py-10 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header Animation */}
-        <motion.h2 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-5xl md:text-6xl font-medium text-center mb-20 tracking-tight"
-        >
-          Frequently Asked <br /> Questions
-        </motion.h2>
+    <section className="font-poppins w-full max-w-7xl mx-auto px-6 py-16 sm:py-24 relative overflow-hidden">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-white/5 rounded-full blur-[140px] pointer-events-none" />
 
-        {/* Grid with Staggered Entrance */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-x-16"
-        >
-          {faqData.map((item, index) => (
-            <motion.div 
-              key={index} 
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-10 sm:mb-16"
+      >
+        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Frequently Asked <span className="bg-gradient-to-b from-white via-white to-gray-300 bg-clip-text text-transparent">Questions</span>
+        </h2>
+
+        <p className="text-gray-300 mt-3 sm:mt-4 max-w-xl text-xs sm:text-base font-light">
+          Everything you need to know about working with me and my process.
+        </p>
+      </motion.div>
+
+      {/* Grid Container - Added items-start to prevent row stretching */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-start"
+      >
+        {faqData.map((item, index) => {
+          const isOpen = openIndex === index
+
+          return (
+            <motion.div
+              key={index}
               variants={itemVariants}
-              className="border-b border-zinc-800/50"
+              className="group relative rounded-2xl sm:rounded-3xl bg-white/[0.03] border border-white/20 backdrop-blur-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_0_0_rgba(255,255,255,0.15)] overflow-hidden transition-all duration-300"
             >
+              {/* Gloss Highlight */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+
               <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full cursor-pointer flex items-center justify-between py-7 text-left hover:text-zinc-400 transition-colors group"
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                className="w-full cursor-pointer flex items-center justify-between p-4 sm:p-6 text-left transition-colors"
               >
-                <span className="text-lg font-light pr-4 leading-snug">
+                <span className="text-sm sm:text-base font-semibold text-white tracking-tight pr-3 leading-snug">
                   {item.question}
                 </span>
-                
-                {/* Icon Rotation */}
-                <motion.div
-                  animate={{ 
-                    rotate: openIndex === index ? 45 : 0,
-                    color: openIndex === index ? "#fff" : "#71717a" 
-                  }}
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+
+                {/* Rotating Icon */}
+                <div
+                  className={`p-1.5 rounded-full bg-white/10 border border-white/15 text-white shrink-0 transition-transform duration-300 ease-out ${
+                    isOpen ? "rotate-45 scale-110" : "rotate-0 scale-100"
+                  }`}
                 >
-                  <Plus className="w-5 h-5 stroke-[1.5px]" />
-                </motion.div>
+                  <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </div>
               </button>
 
-              <AnimatePresence initial={false}>
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    className="overflow-hidden"
-                  >
-                    <p className="pb-8 text-zinc-500 font-light leading-relaxed max-w-md">
+              {/* Hardware-Accelerated Smooth CSS Grid Accordion */}
+              <div
+                className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                  isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 border-t border-white/10 mt-1">
+                    <p className="pt-3 text-gray-300 text-xs sm:text-sm font-light leading-relaxed">
                       {item.answer}
                     </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  </div>
+                </div>
+              </div>
             </motion.div>
-          ))}
-        </motion.div>
-      </div>
+          )
+        })}
+      </motion.div>
     </section>
-  );
-};
-
-export default FaqSection;
+  )
+}

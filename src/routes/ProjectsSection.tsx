@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom" // ✅ changed
+import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
 import { getProjects, type Project } from "../api/projects"
+import ProjectModal from "../components/ProjectModal"
 
 const container = {
   hidden: { opacity: 0 },
@@ -23,14 +24,13 @@ const item = {
 
 export default function ProjectsSection() {
   const navigate = useNavigate()
-
   const [projects, setProjects] = useState<Project[]>([])
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const data = await getProjects()
-
         const latestProjects = data.slice(0, 3)
         setProjects(latestProjects)
       } catch (error) {
@@ -42,7 +42,9 @@ export default function ProjectsSection() {
   }, [])
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-24">
+    <section className="font-poppins w-full max-w-7xl mx-auto px-6 relative overflow-hidden">
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] rounded-full blur-[140px] pointer-events-none" />
 
       {/* Heading */}
       <motion.div
@@ -51,61 +53,55 @@ export default function ProjectsSection() {
         viewport={{ once: true }}
         className="mb-16"
       >
-        <h2 className="text-4xl font-bold text-white">
-          Projects I've Created
+        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Projects <span className="bg-gradient-to-b from-white via-white to-gray-300 bg-clip-text text-transparent">I've Created</span>
         </h2>
 
-        <p className="text-gray-400 mt-4 max-w-xl">
+        <p className="text-gray-300 mt-4 max-w-xl text-xs sm:text-base font-light">
           Projects that highlight my skills in building modern web applications.
         </p>
       </motion.div>
 
-      {/* Projects Grid */}
+      {/* Mobile Horizontal Carousel / Desktop 3-Column Grid */}
       <motion.div
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+        className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0"
       >
         {projects.map((project) => (
           <motion.div
             key={project._id}
             variants={item}
             whileHover={{ y: -8 }}
-            className="group overflow-hidden backdrop-blur-lg hover:border-white/20 transition"
+            onClick={() => setSelectedProject(project)}
+            className="group relative cursor-pointer min-w-[85%] sm:min-w-[70%] md:min-w-full snap-center rounded-3xl bg-white/[0.03] border border-white/20 backdrop-blur-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_0_0_rgba(255,255,255,0.2)] overflow-hidden transition-all duration-300 flex flex-col justify-between"
           >
-            <div className="overflow-hidden rounded-xl">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-64 object-cover group-hover:scale-105 transition duration-500"
-              />
+            {/* Liquid Edge Gloss Highlight */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none z-20" />
+
+            {/* Image Box */}
+            <div className="relative p-3 pb-0">
+              <div className="relative overflow-hidden rounded-2xl border border-white/10">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+                />
+              </div>
             </div>
 
-            <div className="py-6 flex flex-col gap-4">
-              <h3 className="text-xl font-semibold text-white">
-                {project.title}
-              </h3>
+            {/* Card Content */}
+            <div className="p-6 pt-4 flex flex-col justify-between flex-1 gap-4 relative z-10">
+              <div>
+                <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+                  {project.title}
+                </h3>
 
-              <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
-                {project.description}
-              </p>
-
-              <div className="flex gap-3">
-                <button
-                  onClick={() => window.open(project.live, "_blank")}
-                  className="px-5 py-2 text-sm rounded-lg border border-white/20 text-white hover:bg-white hover:text-black cursor-pointer transition font-medium"
-                >
-                  View Demo
-                </button>
-
-                <button
-                  onClick={() => window.open(project.github, "_blank")}
-                  className="px-5 py-2 text-sm rounded-lg bg-white text-black hover:bg-black hover:text-white cursor-pointer border border-white/20 transition"
-                >
-                  Repo
-                </button>
+                <p className="text-gray-300 text-sm leading-relaxed font-light line-clamp-2">
+                  {project.description}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -118,16 +114,23 @@ export default function ProjectsSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="flex justify-center mt-5"
+        className="flex justify-center mt-12"
       >
         <button
-          onClick={() => navigate("/projects")} // ✅ fixed
-          className="flex items-center px-4 py-2 rounded-lg cursor-pointer bg-white text-black font-semibold hover:opacity-90 transition"
+          onClick={() => navigate("/projects")}
+          className="group relative cursor-pointer inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-white/90 hover:bg-white text-black font-semibold text-sm transition-all duration-300 active:scale-95 border border-white/50 overflow-hidden"
         >
-          View More Projects <ArrowRight />
+          <span className="relative z-10">View More Projects</span>
+          <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         </button>
       </motion.div>
 
+      {/* Pop-up Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   )
 }
