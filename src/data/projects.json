@@ -1,24 +1,36 @@
 [
   {
     "_id": "1",
-    "title": "Ai Resume Analyser",
+    "title": "CV Pilot | Resume analyser",
     "description": "An AI-powered resume analyzer that evaluates uploaded resumes, generates an ATS score, highlights strengths and weaknesses, and provides clear, actionable suggestions to improve overall quality and job readiness through a simple and user-friendly experience.",
-    "image": "ai-resume-analyser.png",
+    "image": "cvPilot.png",
     "github": "https://github.com/MohdAyaanAnsari/ResumeAnalyserFrontend",
     "live": "https://ai-resume-analyser.appwrite.network",
+    "techStack": [
+      "React",
+      "Tailwind CSS",
+      "TypeScript",
+      "Node.js"
+    ]
+  },
+  {
+    "_id": "2",
+    "title": "Foodie | Taste the tradition",
+    "description": "A customer-facing restaurant web application that enables users to browse a dynamic menu, add items to their cart, book tables, and manage their profiles through a smooth, responsive, and animated interface. The application features TanStack Router with file-based routing and code splitting, a type-safe Axios API layer, and OTP-based authentication.",
+    "image": "foodie.png",
+    "github": "https://github.com/MohdAyaanAnsari/Foodie_Frontend",
+    "live": "https://foodie.appwrite.network",
     "techStack": [
       "HTML",
       "CSS",
       "JavaScript",
       "Node.js",
-      "MySQL",
-      "ESP8266",
-      "Arduino C++"
+      "PostgreSQL"
     ]
   },
   {
     "_id": "3",
-    "title": "Ultron Real-Time Chatbot",
+    "title": "Ultron |Real-time chatbot",
     "description": "Ultron is a modern real-time chatbot platform built with a full-stack architecture. The application enables seamless messaging between users with instant updates using a scalable Node.js backend and MongoDB database. The frontend is built with React, TypeScript, and Tailwind CSS, providing a fast, responsive, and visually modern chat interface.",
     "image": "ultron-chatbot.png",
     "github": "https://github.com/MohdAyaanAnsari/Ultron_frontend",
@@ -32,8 +44,8 @@
     ]
   },
   {
-    "_id": "2",
-    "title": "Quiz Application",
+    "_id": "4",
+    "title": "Quiz application",
     "description": "A dynamic web-based quiz platform designed to test users with interactive multiple-choice questions. The application provides instant feedback, score tracking, and smooth UI transitions, delivering an engaging learning experience directly in the browser.",
     "image": "quiz-app.png",
     "github": "https://github.com/MohdAyaanAnsari/Quiz-Application",
@@ -45,8 +57,8 @@
     ]
   },
   {
-    "_id": "4",
-    "title": "Weather App",
+    "_id": "5",
+    "title": "Atmos | Weather app",
     "description": "A sleek and responsive weather application that provides real-time weather updates, forecasts, and interactive features. Built with React and Tailwind CSS, it offers a user-friendly interface for checking current conditions and future forecasts.",
     "image": "weather-app.png",
     "github": "https://github.com/MohdAyaanAnsari/Weather-App",
