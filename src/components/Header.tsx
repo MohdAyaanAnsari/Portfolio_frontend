@@ -30,7 +30,7 @@ export default function Header() {
             to="/"
             className="flex items-center gap-2 text-white font-semibold text-sm tracking-wide hover:opacity-80 transition"
           >
-            <span>Ayaan</span>
+            <img src="/Logo.png" alt="" width={45}/>
           </Link>
 
           {/* Center: Desktop Navigation Bar with Sliding Pill */}
